@@ -7,20 +7,46 @@ const Index = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const portfolioItems = [
-    { id: 1, title: 'Дизайн логотипа', category: 'branding', image: '/img/c6f3aa9a-12ec-405e-a628-e6436bb61adf.jpg' },
-    { id: 2, title: 'Упаковка продукта', category: 'packaging', image: '/img/fc2aabdb-1607-4537-a198-04f87e608b84.jpg' },
-    { id: 3, title: 'Веб-дизайн', category: 'web', image: '/img/68c9011c-5fe2-42a8-bbed-2e1ef4ce15bb.jpg' },
-    { id: 4, title: 'Фирменный стиль', category: 'branding', image: '/img/c6f3aa9a-12ec-405e-a628-e6436bb61adf.jpg' },
-    { id: 5, title: 'Иллюстрация', category: 'illustration', image: '/placeholder.svg' },
-    { id: 6, title: 'Мобильное приложение', category: 'web', image: '/img/68c9011c-5fe2-42a8-bbed-2e1ef4ce15bb.jpg' },
+    { id: 1, title: 'Айдентика бренда косметики', category: 'branding', image: '/img/a4e99dec-9464-459f-befc-4a9b9868a56a.jpg', description: 'Создание логотипа и фирменного стиля для бренда органической косметики' },
+    { id: 2, title: 'Упаковка чая премиум-класса', category: 'packaging', image: '/img/28c32358-cfc9-463f-9cd6-dc4dfbf4eb9f.jpg', description: 'Дизайн элегантной упаковки для коллекции травяных чаев' },
+    { id: 3, title: 'Лендинг студии йоги', category: 'web', image: '/img/61f2838b-fa33-49de-ba1c-d1869ba6acdb.jpg', description: 'Создание сайта для студии йоги с женственным дизайном' },
+    { id: 4, title: 'Логотип ювелирной мастерской', category: 'branding', image: '/img/a4e99dec-9464-459f-befc-4a9b9868a56a.jpg', description: 'Разработка элегантного логотипа для ювелирного бренда' },
+    { id: 5, title: 'Иллюстрации для книги', category: 'illustration', image: '/img/5c3677f3-66c6-4bdc-a987-f39d01f6b4d2.jpg', description: 'Серия акварельных иллюстраций для детской книги' },
+    { id: 6, title: 'Приложение для медитации', category: 'web', image: '/img/61f2838b-fa33-49de-ba1c-d1869ba6acdb.jpg', description: 'UI/UX дизайн мобильного приложения для медитации' },
   ];
 
-  const categories = [
-    { id: 'all', name: 'Все проекты' },
-    { id: 'branding', name: 'Брендинг' },
-    { id: 'web', name: 'Веб-дизайн' },
-    { id: 'packaging', name: 'Упаковка' },
-    { id: 'illustration', name: 'Иллюстрация' },
+  const services = [
+    { 
+      title: 'Брендинг', 
+      price: 'от 50 000₽', 
+      description: 'Создание логотипа, фирменного стиля, гайдлайна',
+      icon: 'Palette'
+    },
+    { 
+      title: 'Веб-дизайн', 
+      price: 'от 80 000₽', 
+      description: 'Дизайн сайтов, лендингов, интернет-магазинов',
+      icon: 'Monitor'
+    },
+    { 
+      title: 'Упаковка', 
+      price: 'от 30 000₽', 
+      description: 'Дизайн упаковки, этикеток, стикеров',
+      icon: 'Package'
+    },
+    { 
+      title: 'Иллюстрация', 
+      price: 'от 15 000₽', 
+      description: 'Создание уникальных иллюстраций и паттернов',
+      icon: 'Brush'
+    },
+  ];
+
+  const workSteps = [
+    { step: '01', title: 'Бриф и исследование', description: 'Изучаем ваш бизнес, целевую аудиторию и конкурентов' },
+    { step: '02', title: 'Концепт и мудборд', description: 'Создаем визуальную концепцию и настроение проекта' },
+    { step: '03', title: 'Дизайн и презентация', description: 'Разрабатываем дизайн и представляем варианты' },
+    { step: '04', title: 'Финализация', description: 'Дорабатываем детали и готовим файлы к использованию' },
   ];
 
   const filteredItems = activeFilter === 'all' 
@@ -28,52 +54,64 @@ const Index = () => {
     : portfolioItems.filter(item => item.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-white font-open-sans">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-pink-100">
         <div className="container mx-auto px-6 py-4">
-          <nav className="flex justify-between items-center">
-            <div className="font-montserrat font-bold text-xl">Анна Дизайнер</div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#home" className="hover:text-gray-600 transition-colors">Главная</a>
-              <a href="#about" className="hover:text-gray-600 transition-colors">Обо мне</a>
-              <a href="#portfolio" className="hover:text-gray-600 transition-colors">Портфолио</a>
-              <a href="#services" className="hover:text-gray-600 transition-colors">Услуги</a>
-              <a href="#contact" className="hover:text-gray-600 transition-colors">Контакты</a>
+          <div className="flex justify-between items-center">
+            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-pink-400 bg-clip-text text-transparent">
+              София
             </div>
-            <Button variant="outline" className="md:hidden">
+            <div className="hidden md:flex space-x-8">
+              <a href="#home" className="text-foreground hover:text-primary transition-colors">Главная</a>
+              <a href="#about" className="text-foreground hover:text-primary transition-colors">Обо мне</a>
+              <a href="#portfolio" className="text-foreground hover:text-primary transition-colors">Портфолио</a>
+              <a href="#services" className="text-foreground hover:text-primary transition-colors">Услуги</a>
+              <a href="#contact" className="text-foreground hover:text-primary transition-colors">Контакты</a>
+            </div>
+            <Button variant="outline" className="md:hidden border-primary text-primary">
               <Icon name="Menu" size={20} />
             </Button>
-          </nav>
+          </div>
         </div>
-      </header>
+      </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-6 py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-primary/5 via-pink-50 to-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             <div>
-              <h1 className="font-montserrat text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Создаю
-                <span className="block text-gray-600">визуальные</span>
-                решения
+              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+                ✨ Графический дизайнер
+              </div>
+              <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                Привет! Я София
+                <span className="block bg-gradient-to-r from-primary to-pink-400 bg-clip-text text-transparent">
+                  создаю красоту
+                </span>
               </h1>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Графический дизайнер с 5-летним опытом создания уникальных брендов 
-                и визуальных решений для малого и среднего бизнеса
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Превращаю ваши идеи в визуальные истории, которые влюбляют с первого взгляда. 
+                Специализируюсь на женственном и элегантном дизайне.
               </p>
-              <div className="flex space-x-4">
-                <Button className="bg-black text-white hover:bg-gray-800">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="px-8 py-6 text-lg bg-gradient-to-r from-primary to-pink-400 hover:from-primary/80 hover:to-pink-400/80">
+                  <Icon name="Sparkles" size={20} className="mr-2" />
                   Посмотреть работы
                 </Button>
-                <Button variant="outline">
-                  Связаться со мной
+                <Button variant="outline" size="lg" className="px-8 py-6 text-lg border-primary text-primary hover:bg-primary/5">
+                  <Icon name="Heart" size={20} className="mr-2" />
+                  Обсудить проект
                 </Button>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="w-80 h-80 bg-gray-100 rounded-full flex items-center justify-center">
-                <Icon name="Palette" size={80} className="text-gray-400" />
+            <div className="relative">
+              <div className="w-full aspect-square bg-gradient-to-br from-primary/10 via-pink-100 to-purple-100 rounded-full relative overflow-hidden">
+                <div className="absolute inset-8 bg-white rounded-full shadow-2xl flex items-center justify-center">
+                  <Icon name="Palette" size={120} className="text-primary" />
+                </div>
+                <div className="absolute top-12 right-12 w-20 h-20 bg-pink-200 rounded-full opacity-70"></div>
+                <div className="absolute bottom-16 left-8 w-16 h-16 bg-purple-200 rounded-full opacity-60"></div>
               </div>
             </div>
           </div>
@@ -81,104 +119,37 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-montserrat text-4xl font-bold mb-8">Обо мне</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-12">
-              Привет! Меня зовут Анна, и я графический дизайнер с безграничной страстью к созданию 
-              визуальных историй. Я верю, что хороший дизайн — это не просто красота, 
-              а инструмент коммуникации, который помогает брендам находить своих клиентов.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Award" size={24} className="text-white" />
-                </div>
-                <h3 className="font-montserrat font-semibold mb-2">5+ лет опыта</h3>
-                <p className="text-gray-600">Работы с малым и средним бизнесом</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Users" size={24} className="text-white" />
-                </div>
-                <h3 className="font-montserrat font-semibold mb-2">50+ проектов</h3>
-                <p className="text-gray-600">Успешно реализованных работ</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Heart" size={24} className="text-white" />
-                </div>
-                <h3 className="font-montserrat font-semibold mb-2">Индивидуальный подход</h3>
-                <p className="text-gray-600">К каждому клиенту и проекту</p>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="aspect-square bg-gradient-to-br from-primary/10 to-pink-100 rounded-3xl flex items-center justify-center relative overflow-hidden">
+                <Icon name="Heart" size={120} className="text-primary" />
+                <div className="absolute top-8 right-8 w-12 h-12 bg-pink-300 rounded-full opacity-60"></div>
+                <div className="absolute bottom-12 left-12 w-8 h-8 bg-purple-300 rounded-full opacity-70"></div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Me Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-montserrat text-4xl font-bold text-center mb-16">Почему выбирают меня</h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <Icon name="Zap" size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-montserrat font-semibold mb-2">Быстрое выполнение</h3>
-                    <p className="text-gray-600">Соблюдаю все сроки и часто завершаю проекты раньше времени</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <Icon name="Lightbulb" size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-montserrat font-semibold mb-2">Креативный подход</h3>
-                    <p className="text-gray-600">Нестандартные решения для каждой задачи</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <Icon name="MessageCircle" size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-montserrat font-semibold mb-2">Постоянная связь</h3>
-                    <p className="text-gray-600">Регулярно информирую о ходе работы и обсуждаю детали</p>
-                  </div>
-                </div>
+            <div className="order-1 lg:order-2">
+              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+                💫 Обо мне
               </div>
-              <div className="space-y-8">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <Icon name="Target" size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-montserrat font-semibold mb-2">Ориентация на результат</h3>
-                    <p className="text-gray-600">Дизайн, который решает бизнес-задачи</p>
-                  </div>
+              <h2 className="text-4xl font-bold text-foreground mb-6">Создаю дизайн с душой</h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Я — графический дизайнер с 5-летним опытом создания красивых и эффективных 
+                визуальных решений. Моя страсть — превращать идеи в яркие, запоминающиеся образы.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Специализируюсь на брендинге, веб-дизайне и упаковке. Особенно люблю работать 
+                с женскими брендами и проектами, где важна эстетика и эмоциональная связь с аудиторией.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-4 bg-primary/5 rounded-2xl">
+                  <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                  <div className="text-muted-foreground">Реализованных проектов</div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <Icon name="Repeat" size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-montserrat font-semibold mb-2">Бесплатные правки</h3>
-                    <p className="text-gray-600">До 3 раундов корректировок включены в стоимость</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <Icon name="Shield" size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-montserrat font-semibold mb-2">Гарантия качества</h3>
-                    <p className="text-gray-600">100% уникальные работы с передачей авторских прав</p>
-                  </div>
+                <div className="text-center p-4 bg-pink-50 rounded-2xl">
+                  <div className="text-3xl font-bold text-primary mb-2">5</div>
+                  <div className="text-muted-foreground">Лет опыта</div>
                 </div>
               </div>
             </div>
@@ -187,27 +158,39 @@ const Index = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-white">
+      <section id="portfolio" className="py-20 bg-gradient-to-b from-primary/5 to-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="font-montserrat text-4xl font-bold mb-4">Портфолио</h2>
-            <p className="text-lg text-gray-600">Избранные работы за последние годы</p>
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+              🎨 Портфолио
+            </div>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Мои работы</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Каждый проект — это история, рассказанная через дизайн
+            </p>
           </div>
-          
-          {/* Filter Buttons */}
+
+          {/* Portfolio Filters */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
+            {[
+              { key: 'all', label: 'Все работы', icon: 'Grid' },
+              { key: 'branding', label: 'Брендинг', icon: 'Star' },
+              { key: 'web', label: 'Веб-дизайн', icon: 'Monitor' },
+              { key: 'packaging', label: 'Упаковка', icon: 'Package' },
+              { key: 'illustration', label: 'Иллюстрация', icon: 'Brush' },
+            ].map(filter => (
               <Button
-                key={category.id}
-                variant={activeFilter === category.id ? "default" : "outline"}
-                onClick={() => setActiveFilter(category.id)}
-                className={`${
-                  activeFilter === category.id 
-                    ? 'bg-black text-white' 
-                    : 'border-gray-300 hover:border-black'
+                key={filter.key}
+                variant={activeFilter === filter.key ? 'default' : 'outline'}
+                onClick={() => setActiveFilter(filter.key)}
+                className={`rounded-full ${
+                  activeFilter === filter.key 
+                    ? 'bg-gradient-to-r from-primary to-pink-400 text-white' 
+                    : 'border-primary/20 hover:border-primary hover:bg-primary/5'
                 }`}
               >
-                {category.name}
+                <Icon name={filter.icon as any} size={16} className="mr-2" />
+                {filter.label}
               </Button>
             ))}
           </div>
@@ -215,18 +198,19 @@ const Index = () => {
           {/* Portfolio Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map((item) => (
-              <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="aspect-square bg-gray-100 overflow-hidden">
+              <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group border-primary/10">
+                <div className="aspect-square bg-gradient-to-br from-primary/10 to-pink-100 overflow-hidden">
                   <img 
                     src={item.image} 
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="font-montserrat font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{categories.find(c => c.id === item.category)?.name}</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">{item.description}</p>
+                  <Button variant="outline" size="sm" className="w-full border-primary/20 text-primary hover:bg-primary/5">
+                    <Icon name="Eye" size={16} className="mr-2" />
                     Посмотреть детали
                   </Button>
                 </CardContent>
@@ -237,229 +221,120 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-montserrat text-4xl font-bold mb-4">Услуги</h2>
-            <p className="text-lg text-gray-600">Полный спектр дизайнерских услуг для вашего бизнеса</p>
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+              💼 Услуги
+            </div>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Что я предлагаю</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Полный спектр дизайнерских услуг для вашего бренда
+            </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Palette" size={24} className="text-white" />
-              </div>
-              <h3 className="font-montserrat font-semibold text-xl mb-4">Разработка логотипа</h3>
-              <p className="text-gray-600 mb-6">Уникальный логотип, отражающий суть вашего бренда</p>
-              <p className="font-semibold text-2xl mb-4">от 15 000 ₽</p>
-              <Button variant="outline" className="w-full">Заказать</Button>
-            </Card>
 
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Layout" size={24} className="text-white" />
-              </div>
-              <h3 className="font-montserrat font-semibold text-xl mb-4">Фирменный стиль</h3>
-              <p className="text-gray-600 mb-6">Полная айдентика: логотип, визитки, бланки</p>
-              <p className="font-semibold text-2xl mb-4">от 35 000 ₽</p>
-              <Button variant="outline" className="w-full">Заказать</Button>
-            </Card>
-
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Package" size={24} className="text-white" />
-              </div>
-              <h3 className="font-montserrat font-semibold text-xl mb-4">Дизайн упаковки</h3>
-              <p className="text-gray-600 mb-6">Яркая упаковка, которая выделит товар на полке</p>
-              <p className="font-semibold text-2xl mb-4">от 25 000 ₽</p>
-              <Button variant="outline" className="w-full">Заказать</Button>
-            </Card>
-
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Monitor" size={24} className="text-white" />
-              </div>
-              <h3 className="font-montserrat font-semibold text-xl mb-4">Веб-дизайн</h3>
-              <p className="text-gray-600 mb-6">Дизайн сайтов и лендингов</p>
-              <p className="font-semibold text-2xl mb-4">от 40 000 ₽</p>
-              <Button variant="outline" className="w-full">Заказать</Button>
-            </Card>
-
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Pen" size={24} className="text-white" />
-              </div>
-              <h3 className="font-montserrat font-semibold text-xl mb-4">Иллюстрация</h3>
-              <p className="text-gray-600 mb-6">Уникальные иллюстрации для любых задач</p>
-              <p className="font-semibold text-2xl mb-4">от 8 000 ₽</p>
-              <Button variant="outline" className="w-full">Заказать</Button>
-            </Card>
-
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="FileText" size={24} className="text-white" />
-              </div>
-              <h3 className="font-montserrat font-semibold text-xl mb-4">Печатная продукция</h3>
-              <p className="text-gray-600 mb-6">Буклеты, каталоги, листовки</p>
-              <p className="font-semibold text-2xl mb-4">от 5 000 ₽</p>
-              <Button variant="outline" className="w-full">Заказать</Button>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, index) => (
+              <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 border-primary/10 group">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Icon name={service.icon as any} size={32} className="text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{service.title}</h3>
+                <div className="text-2xl font-bold bg-gradient-to-r from-primary to-pink-400 bg-clip-text text-transparent mb-3">
+                  {service.price}
+                </div>
+                <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
+                <Button variant="outline" size="sm" className="w-full border-primary/20 text-primary hover:bg-primary/5">
+                  Заказать
+                </Button>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* How I Work Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-b from-primary/5 to-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-montserrat text-4xl font-bold mb-4">Как я работаю</h2>
-            <p className="text-lg text-gray-600">Пошаговый процесс создания дизайна</p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-12">
-              <div className="flex items-start space-x-6">
-                <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-montserrat font-bold flex-shrink-0">
-                  1
-                </div>
-                <div>
-                  <h3 className="font-montserrat font-semibold text-xl mb-3">Анализ и бриф</h3>
-                  <p className="text-gray-600">Изучаем ваш бизнес, целевую аудиторию и конкурентов. Определяем задачи и ожидания от проекта.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-6">
-                <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-montserrat font-bold flex-shrink-0">
-                  2
-                </div>
-                <div>
-                  <h3 className="font-montserrat font-semibold text-xl mb-3">Концепция и эскизы</h3>
-                  <p className="text-gray-600">Создаю несколько концептуальных направлений и представляю их в виде эскизов для обсуждения.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-6">
-                <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-montserrat font-bold flex-shrink-0">
-                  3
-                </div>
-                <div>
-                  <h3 className="font-montserrat font-semibold text-xl mb-3">Детализация</h3>
-                  <p className="text-gray-600">Выбираем лучшую концепцию и дорабатываем её до финального варианта с учётом ваших пожеланий.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-6">
-                <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-montserrat font-bold flex-shrink-0">
-                  4
-                </div>
-                <div>
-                  <h3 className="font-montserrat font-semibold text-xl mb-3">Презентация</h3>
-                  <p className="text-gray-600">Представляю готовый дизайн в контексте использования и передаю все исходные файлы.</p>
-                </div>
-              </div>
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+              ⚡ Процесс работы
             </div>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Как я работаю</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Структурированный процесс для достижения лучшего результата
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Resources Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-montserrat text-4xl font-bold mb-4">Полезные материалы</h2>
-            <p className="text-lg text-gray-600">Статьи и советы о дизайне и брендинге</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-gray-100 flex items-center justify-center">
-                <Icon name="FileText" size={32} className="text-gray-400" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {workSteps.map((step, index) => (
+              <div key={index} className="text-center group">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-pink-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <span className="text-2xl font-bold text-white">{step.step}</span>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
               </div>
-              <CardContent className="p-6">
-                <h3 className="font-montserrat font-semibold mb-2">Как выбрать цвета для бренда</h3>
-                <p className="text-gray-600 text-sm mb-4">Психология цвета в дизайне и её влияние на восприятие бренда</p>
-                <Button variant="outline" size="sm">Читать статью</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-gray-100 flex items-center justify-center">
-                <Icon name="FileText" size={32} className="text-gray-400" />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-montserrat font-semibold mb-2">Тренды дизайна 2024</h3>
-                <p className="text-gray-600 text-sm mb-4">Актуальные направления в графическом дизайне этого года</p>
-                <Button variant="outline" size="sm">Читать статью</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-gray-100 flex items-center justify-center">
-                <Icon name="FileText" size={32} className="text-gray-400" />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-montserrat font-semibold mb-2">Подготовка к печати</h3>
-                <p className="text-gray-600 text-sm mb-4">Чек-лист для подготовки макетов к типографской печати</p>
-                <Button variant="outline" size="sm">Читать статью</Button>
-              </CardContent>
-            </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-black text-white">
+      <section id="contact" className="py-20">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-montserrat text-4xl font-bold mb-8">Готовы начать проект?</h2>
-            <p className="text-lg mb-12">Свяжитесь со мной, и мы обсудим ваши задачи</p>
-            
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Mail" size={24} className="text-black" />
-                </div>
-                <h3 className="font-montserrat font-semibold mb-2">Email</h3>
-                <p className="text-gray-300">anna@designer.ru</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Phone" size={24} className="text-black" />
-                </div>
-                <h3 className="font-montserrat font-semibold mb-2">Телефон</h3>
-                <p className="text-gray-300">+7 (999) 123-45-67</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="MessageCircle" size={24} className="text-black" />
-                </div>
-                <h3 className="font-montserrat font-semibold mb-2">Telegram</h3>
-                <p className="text-gray-300">@anna_designer</p>
-              </div>
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+              💌 Контакты
             </div>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Давайте создадим что-то прекрасное</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Готова воплотить ваши идеи в жизнь и создать дизайн, который вдохновляет
+            </p>
+          </div>
 
-            <Button className="bg-white text-black hover:bg-gray-100">
-              Написать мне
-            </Button>
+          <div className="max-w-2xl mx-auto">
+            <Card className="p-8 border-primary/10">
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Icon name="Mail" size={40} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-semibold text-foreground mb-2">Обсудим ваш проект?</h3>
+                <p className="text-muted-foreground">Напишите мне, и мы найдем идеальное решение для вашего бренда</p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="px-8 bg-gradient-to-r from-primary to-pink-400 hover:from-primary/80 hover:to-pink-400/80">
+                  <Icon name="Mail" size={20} className="mr-2" />
+                  sofia@example.com
+                </Button>
+                <Button variant="outline" size="lg" className="px-8 border-primary text-primary hover:bg-primary/5">
+                  <Icon name="MessageCircle" size={20} className="mr-2" />
+                  Telegram
+                </Button>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-8">
+      <footer className="bg-gradient-to-r from-primary to-pink-400 text-white py-12">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="font-montserrat font-bold text-white mb-4 md:mb-0">
-              Анна Дизайнер
+          <div className="text-center">
+            <div className="text-3xl font-bold mb-4">София</div>
+            <p className="text-white/80 mb-6">Графический дизайнер • Создаю красоту в деталях</p>
+            <div className="flex justify-center space-x-6">
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 cursor-pointer transition-colors">
+                <Icon name="Instagram" size={20} className="text-white" />
+              </div>
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 cursor-pointer transition-colors">
+                <Icon name="Facebook" size={20} className="text-white" />
+              </div>
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 cursor-pointer transition-colors">
+                <Icon name="Twitter" size={20} className="text-white" />
+              </div>
             </div>
-            <div className="flex space-x-6">
-              <a href="#" className="hover:text-white transition-colors">Instagram</a>
-              <a href="#" className="hover:text-white transition-colors">Behance</a>
-              <a href="#" className="hover:text-white transition-colors">Dribbble</a>
-            </div>
-          </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-            <p>&copy; 2024 Анна Дизайнер. Все права защищены.</p>
           </div>
         </div>
       </footer>
